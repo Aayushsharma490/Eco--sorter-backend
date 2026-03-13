@@ -1,0 +1,231 @@
+{
+  "users": [
+    {
+      "id": "user1",
+      "name": "Demo User",
+      "email": "user@demo.com",
+      "password": "$2a$12$nfq01O91XsiscOGOzLhHuOaUb83CAh/kSlueUAAbeEtrOsHZ7CO1G",
+      "role": "user",
+      "phone": "+91 123 456 7890",
+      "address": {
+        "street": "Sector 5",
+        "city": "Udaipur",
+        "state": "Rajasthan",
+        "pincode": "313001"
+      },
+      "credits": 450,
+      "isActive": true,
+      "createdAt": "2026-01-01T00:00:00.000Z"
+    },
+    {
+      "id": "exec1",
+      "name": "Demo Executive",
+      "email": "executive@demo.com",
+      "password": "$2a$12$nfq01O91XsiscOGOzLhHuOaUb83CAh/kSlueUAAbeEtrOsHZ7CO1G",
+      "role": "executive",
+      "phone": "+91 987 654 3210",
+      "address": {},
+      "credits": 0,
+      "isActive": true,
+      "createdAt": "2026-01-01T00:00:00.000Z"
+    },
+    {
+      "id": "admin1",
+      "name": "Demo Admin",
+      "email": "admin@demo.com",
+      "password": "$2a$12$nfq01O91XsiscOGOzLhHuOaUb83CAh/kSlueUAAbeEtrOsHZ7CO1G",
+      "role": "admin",
+      "phone": "+91 555 666 7777",
+      "address": {},
+      "credits": 0,
+      "isActive": true,
+      "createdAt": "2026-01-01T00:00:00.000Z"
+    }
+  ],
+  "pickups": [
+    {
+      "id": "pickup1",
+      "userId": "user1",
+      "executiveId": null,
+      "scheduledDate": "2026-03-15T10:00:00.000Z",
+      "estimatedWeight": 10,
+      "actualWeight": null,
+      "address": {
+        "street": "Sector 5",
+        "city": "Udaipur",
+        "state": "Rajasthan",
+        "pincode": "313001"
+      },
+      "status": "pending",
+      "creditsEarned": 0,
+      "notes": "Please collect from main gate",
+      "createdAt": "2026-03-10T08:00:00.000Z",
+      "completedAt": null
+    },
+    {
+      "id": "pickup2",
+      "userId": "user1",
+      "executiveId": "exec1",
+      "scheduledDate": "2026-03-10T14:00:00.000Z",
+      "estimatedWeight": 15,
+      "actualWeight": 15,
+      "address": {
+        "street": "Sector 5",
+        "city": "Udaipur",
+        "state": "Rajasthan",
+        "pincode": "313001"
+      },
+      "status": "completed",
+      "creditsEarned": 150,
+      "notes": "",
+      "createdAt": "2026-03-08T10:00:00.000Z",
+      "completedAt": "2026-03-10T15:30:00.000Z"
+    },
+    {
+      "id": "pickup3",
+      "userId": "user1",
+      "executiveId": "exec1",
+      "scheduledDate": "2026-03-14T11:00:00.000Z",
+      "estimatedWeight": 8,
+      "actualWeight": null,
+      "address": {
+        "street": "Sector 5",
+        "city": "Udaipur",
+        "state": "Rajasthan",
+        "pincode": "313001"
+      },
+      "status": "accepted",
+      "creditsEarned": 0,
+      "notes": "",
+      "createdAt": "2026-03-12T09:00:00.000Z",
+      "completedAt": null
+    },
+    {
+      "id": "pickup1773367329414",
+      "userId": "user1",
+      "executiveId": null,
+      "scheduledDate": "2026-03-13",
+      "estimatedWeight": 5,
+      "actualWeight": null,
+      "address": {
+        "street": "Sector 5",
+        "city": "Udaipur",
+        "state": "Rajasthan",
+        "pincode": "313001"
+      },
+      "status": "pending",
+      "creditsEarned": 0,
+      "notes": "",
+      "createdAt": "2026-03-13T02:02:09.414Z",
+      "completedAt": null
+    }
+  ],
+  "dustbins": [
+    {
+      "id": "dustbin1",
+      "userId": "user1",
+      "location": "Sector 5, Udaipur",
+      "level": 65,
+      "status": "moderate",
+      "lastUpdated": "2026-03-13T12:00:00.000Z"
+    }
+  ],
+  "centers": [
+    {
+      "id": "center1",
+      "name": "Apno Bhandhar",
+      "address": {
+        "street": "115 and 116 Amba Mata ki Ghati Mangal Vihar Titardi",
+        "city": "Udaipur",
+        "state": "Rajasthan",
+        "pincode": "313001",
+        "fullAddress": "115 and 116 Amba Mata ki Ghati Mangal Vihar Titardi, Teshil Girwa, Udaipur, Rajasthan, IN"
+      },
+      "serviceableAreas": [
+        {
+          "areaName": "Area 1",
+          "pincode": "313100"
+        },
+        {
+          "areaName": "Area 2",
+          "pincode": "313101"
+        },
+        {
+          "areaName": "Area 3",
+          "pincode": "313103"
+        }
+      ],
+      "contact": {
+        "phone": "+91 123 456 7890",
+        "email": "apnobhandhar@example.com"
+      },
+      "isActive": true,
+      "totalCollections": 0,
+      "createdAt": "2026-01-01T00:00:00.000Z"
+    },
+    {
+      "id": "center2",
+      "name": "Trust of People",
+      "address": {
+        "street": "Jagatpura",
+        "city": "Jaipur",
+        "state": "Rajasthan",
+        "pincode": "302017",
+        "fullAddress": "Jagatpura, Jaipur, Rajasthan, IN"
+      },
+      "serviceableAreas": [
+        {
+          "areaName": "Area 8",
+          "pincode": "313000"
+        },
+        {
+          "areaName": "Area 9",
+          "pincode": "313008"
+        },
+        {
+          "areaName": "Area 7",
+          "pincode": "313031"
+        },
+        {
+          "areaName": "Area",
+          "pincode": "313024"
+        },
+        {
+          "areaName": "Area 1",
+          "pincode": "313001"
+        },
+        {
+          "areaName": "Area 2",
+          "pincode": "313002"
+        },
+        {
+          "areaName": "Area 3",
+          "pincode": "313003"
+        },
+        {
+          "areaName": "Area 4",
+          "pincode": "313004"
+        },
+        {
+          "areaName": "Area 5",
+          "pincode": "313011"
+        },
+        {
+          "areaName": "Area 6",
+          "pincode": "313022"
+        },
+        {
+          "areaName": "Area 10",
+          "pincode": "313009"
+        }
+      ],
+      "contact": {
+        "phone": "+91 987 654 3210",
+        "email": "trustofpeople@example.com"
+      },
+      "isActive": true,
+      "totalCollections": 0,
+      "createdAt": "2026-01-01T00:00:00.000Z"
+    }
+  ]
+}
