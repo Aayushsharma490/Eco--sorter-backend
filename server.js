@@ -14,6 +14,8 @@ import pickupRoutes from './routes/pickups.js';
 import dustbinRoutes from './routes/dustbins.js';
 import centerRoutes from './routes/centers.js';
 import statsRoutes from './routes/stats.js';
+import locationRoutes from './routes/location.js';
+import userRoutes from './routes/users.js';
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
@@ -48,6 +50,8 @@ app.use('/api/pickups', pickupRoutes);
 app.use('/api/dustbins', dustbinRoutes);
 app.use('/api/centers', centerRoutes);
 app.use('/api/stats', statsRoutes);
+app.use('/api/location', locationRoutes);
+app.use('/api/users', userRoutes);
 
 // Health check
 app.get('/api/health', (req, res) => {

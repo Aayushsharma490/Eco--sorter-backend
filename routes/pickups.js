@@ -164,13 +164,72 @@ router.put('/:id/complete', verifyToken, (req, res) => {
       return res.status(404).json({ success: false, message: 'Pickup not found' });
     }
 
+    // Generate 6-digit OTP
+    const otp = Math.floor(100000 + Math.random() * 900000).toString();
+    
+    pickup.otp = otp;
+    pickup.otpGeneratedAt = new Date().toISOString();
+    pickup.actualWeight = actualWeight;
+    
+    saveDB(db);
+
+    res.json({
+      success: true,
+      message: 'OTP generated successfully',
+      data: {
+        pickupId: pickup.id,
+        otp: otp, // In production, send via SMS
+        expiresIn: '10 minutes'
+      }
+    });
+  } catch (error) {
+    res.status(500).json({ success: false, message: error.message });
+  }
+});
+
+// @route   PUT /api/pickups/:id/verify-otp
+// @desc    Verify OTP and complete pickup
+// @access  Private (User)
+router.put('/:id/verify-otp', verifyToken, (req, res) => {
+  try {
+    if (req.user.role !== 'user') {
+      return res.status(403).json({ success: false, message: 'Only users can verify OTP' });
+    }
+
+    const { otp } = req.body;
+    const db = getDB();
+    const pickup = db.pickups.find(p => p.id === req.params.id);
+
+    if (!pickup) {
+      return res.status(404).json({ success: false, message: 'Pickup not found' });
+    }
+
+    if (pickup.userId !== req.user.id) {
+      return res.status(403).json({ success: false, message: 'Not authorized' });
+    }
+
+    if (!pickup.otp) {
+      return res.status(400).json({ success: false, message: 'OTP not generated yet' });
+    }
+
+    // Check OTP expiry (10 minutes)
+    const otpAge = Date.now() - new Date(pickup.otpGeneratedAt).getTime();
+    if (otpAge > 10 * 60 * 1000) {
+      return res.status(400).json({ success: false, message: 'OTP expired' });
+    }
+
+    if (pickup.otp !== otp) {
+      return res.status(400).json({ success: false, message: 'Invalid OTP' });
+    }
+
     // Calculate credits (1kg = 10 credits)
-    const creditsEarned = Math.floor(actualWeight * 10);
+    const creditsEarned = Math.floor(pickup.actualWeight * 10);
 
     pickup.status = 'completed';
-    pickup.actualWeight = actualWeight;
     pickup.creditsEarned = creditsEarned;
     pickup.completedAt = new Date().toISOString();
+    pickup.otp = null; // Clear OTP
+    pickup.otpGeneratedAt = null;
 
     // Update user credits
     const user = db.users.find(u => u.id === pickup.userId);
@@ -182,7 +241,12 @@ router.put('/:id/complete', verifyToken, (req, res) => {
 
     res.json({
       success: true,
-      data: pickup
+      message: 'Pickup completed successfully!',
+      data: {
+        pickup,
+        creditsEarned,
+        totalCredits: user.credits
+      }
     });
   } catch (error) {
     res.status(500).json({ success: false, message: error.message });
