@@ -148,7 +148,7 @@ router.put('/:id/accept', verifyToken, (req, res) => {
 });
 
 // @route   PUT /api/pickups/:id/complete
-// @desc    Complete pickup
+// @desc    Generate OTP for pickup completion
 // @access  Private (Executive)
 router.put('/:id/complete', verifyToken, (req, res) => {
   try {
@@ -169,7 +169,9 @@ router.put('/:id/complete', verifyToken, (req, res) => {
     
     pickup.otp = otp;
     pickup.otpGeneratedAt = new Date().toISOString();
-    pickup.actualWeight = actualWeight;
+    if (actualWeight) {
+      pickup.actualWeight = actualWeight;
+    }
     
     saveDB(db);
 
@@ -178,7 +180,7 @@ router.put('/:id/complete', verifyToken, (req, res) => {
       message: 'OTP generated successfully',
       data: {
         pickupId: pickup.id,
-        otp: otp, // In production, send via SMS
+        otp: otp,
         expiresIn: '10 minutes'
       }
     });
@@ -196,7 +198,7 @@ router.put('/:id/verify-otp', verifyToken, (req, res) => {
       return res.status(403).json({ success: false, message: 'Only users can verify OTP' });
     }
 
-    const { otp } = req.body;
+    const { otp, actualWeight } = req.body;
     const db = getDB();
     const pickup = db.pickups.find(p => p.id === req.params.id);
 
@@ -222,10 +224,14 @@ router.put('/:id/verify-otp', verifyToken, (req, res) => {
       return res.status(400).json({ success: false, message: 'Invalid OTP' });
     }
 
+    // Use provided weight or default to estimated weight
+    const finalWeight = actualWeight || pickup.estimatedWeight || 10;
+    
     // Calculate credits (1kg = 10 credits)
-    const creditsEarned = Math.floor(pickup.actualWeight * 10);
+    const creditsEarned = Math.floor(finalWeight * 10);
 
     pickup.status = 'completed';
+    pickup.actualWeight = finalWeight;
     pickup.creditsEarned = creditsEarned;
     pickup.completedAt = new Date().toISOString();
     pickup.otp = null; // Clear OTP
@@ -234,7 +240,7 @@ router.put('/:id/verify-otp', verifyToken, (req, res) => {
     // Update user credits
     const user = db.users.find(u => u.id === pickup.userId);
     if (user) {
-      user.credits += creditsEarned;
+      user.credits = (user.credits || 0) + creditsEarned;
     }
 
     saveDB(db);

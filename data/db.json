@@ -13,13 +13,13 @@
         "state": "Rajasthan",
         "pincode": "313001"
       },
-      "credits": 450,
+      "credits": 550,
       "isActive": true,
       "createdAt": "2026-01-01T00:00:00.000Z",
       "location": {
-        "latitude": 23.114255809813844,
-        "longitude": 72.62912086522317,
-        "lastUpdated": "2026-03-13T21:56:56.052Z"
+        "latitude": 23.114278212996165,
+        "longitude": 72.62903846123407,
+        "lastUpdated": "2026-03-13T22:33:23.756Z"
       }
     },
     {
@@ -51,9 +51,9 @@
       "isActive": true,
       "createdAt": "2026-01-01T00:00:00.000Z",
       "location": {
-        "latitude": 23.114258402380607,
-        "longitude": 72.62911364421915,
-        "lastUpdated": "2026-03-13T21:38:04.612Z"
+        "latitude": 23.114258072670417,
+        "longitude": 72.62911604627585,
+        "lastUpdated": "2026-03-13T22:19:10.268Z"
       }
     }
   ],
@@ -163,9 +163,87 @@
       "createdAt": "2026-03-13T21:38:22.325Z",
       "completedAt": null,
       "userLocation": {
-        "latitude": 23.114255809813844,
-        "longitude": 72.62912086522317,
-        "lastUpdated": "2026-03-13T21:56:56.052Z"
+        "latitude": 23.114278212996165,
+        "longitude": 72.62903846123407,
+        "lastUpdated": "2026-03-13T22:33:03.170Z"
+      }
+    },
+    {
+      "id": "pickup1773440112450",
+      "userId": "user1",
+      "executiveId": "exec1",
+      "scheduledDate": "2026-03-14",
+      "estimatedWeight": 5,
+      "actualWeight": 0,
+      "address": {
+        "street": "Sector 5",
+        "city": "Udaipur",
+        "state": "Rajasthan",
+        "pincode": "313001"
+      },
+      "status": "completed",
+      "creditsEarned": 0,
+      "notes": "",
+      "createdAt": "2026-03-13T22:15:12.450Z",
+      "completedAt": "2026-03-13T22:16:20.804Z",
+      "otp": null,
+      "otpGeneratedAt": null,
+      "userLocation": {
+        "latitude": 23.114258072670417,
+        "longitude": 72.62911604627585,
+        "lastUpdated": "2026-03-13T22:16:10.091Z"
+      }
+    },
+    {
+      "id": "pickup1773441057213",
+      "userId": "user1",
+      "executiveId": "exec1",
+      "scheduledDate": "2026-03-14",
+      "estimatedWeight": 5,
+      "actualWeight": 5,
+      "address": {
+        "street": "Sector 5",
+        "city": "Udaipur",
+        "state": "Rajasthan",
+        "pincode": "313001"
+      },
+      "status": "completed",
+      "creditsEarned": 50,
+      "notes": "",
+      "createdAt": "2026-03-13T22:30:57.213Z",
+      "completedAt": "2026-03-13T22:31:41.772Z",
+      "otp": null,
+      "otpGeneratedAt": null,
+      "userLocation": {
+        "latitude": 23.114257820118354,
+        "longitude": 72.62911523545081,
+        "lastUpdated": "2026-03-13T22:31:41.161Z"
+      }
+    },
+    {
+      "id": "pickup1773441184821",
+      "userId": "user1",
+      "executiveId": "exec1",
+      "scheduledDate": "2026-03-14",
+      "estimatedWeight": 5,
+      "actualWeight": 5,
+      "address": {
+        "street": "Sector 5",
+        "city": "Udaipur",
+        "state": "Rajasthan",
+        "pincode": "313001"
+      },
+      "status": "completed",
+      "creditsEarned": 50,
+      "notes": "",
+      "createdAt": "2026-03-13T22:33:04.821Z",
+      "completedAt": "2026-03-13T22:33:31.418Z",
+      "otp": null,
+      "otpGeneratedAt": null,
+      "userLocation": {
+        "latitude": 23.114278212996165,
+        "longitude": 72.62903846123407,
+        "lastUpdated": "2026-03-13T22:33:23.756Z"
       }
     }
   ],
